@@ -130,8 +130,8 @@ export default function App() {
               <div className="relative group">
                 <TooltipProvider>
                   <Tooltip open={!isTickerKnown}>
-                    <TooltipTrigger asChild>
-                      <div>
+                    <TooltipTrigger
+                      render={
                         <HeaderInput 
                           value={cells.cedearRatio.value}
                           onChange={(v) => handleValueChange('cedearRatio', v)}
@@ -142,8 +142,8 @@ export default function App() {
                             !isTickerKnown && "bg-red-500/10 border-red-500 text-white focus:border-red-400 animate-pulse"
                           )}
                         />
-                      </div>
-                    </TooltipTrigger>
+                      }
+                    />
                     <TooltipContent side="bottom" className="bg-red-600 text-white border-none text-[9px] uppercase font-bold tracking-tighter">
                       Debe ingresar el valor del ratio
                     </TooltipContent>
@@ -384,7 +384,7 @@ function SidebarItem({ label, variable, value, type, precision = 2, suffix = "" 
   );
 }
 
-function HeaderInput({ value, onChange, precision = 2, readOnly = false, className = "" }: { value: number, onChange: (v: string) => void, precision?: number, readOnly?: boolean, className?: string }) {
+const HeaderInput = React.forwardRef<HTMLInputElement, { value: number, onChange: (v: string) => void, precision?: number, readOnly?: boolean, className?: string, [key: string]: any }>(({ value, onChange, precision = 2, readOnly = false, className = "", ...props }, ref) => {
   const [localValue, setLocalValue] = useState(formatValue(value, precision));
 
   useEffect(() => {
@@ -412,6 +412,7 @@ function HeaderInput({ value, onChange, precision = 2, readOnly = false, classNa
 
   return (
     <input 
+      ref={ref}
       type="text"
       className={cn(
         "bg-blue-500/10 border border-blue-400/30 px-2 py-1.5 md:px-3 rounded-sm text-sm font-mono text-[var(--accent)] outline-none focus:border-[var(--accent)] hover:border-blue-400/50 transition-all text-center tracking-widest",
@@ -422,9 +423,12 @@ function HeaderInput({ value, onChange, precision = 2, readOnly = false, classNa
       onChange={(e) => handleChange(e.target.value)}
       onBlur={handleBlur}
       readOnly={readOnly}
+      {...props}
     />
   );
-}
+});
+
+HeaderInput.displayName = 'HeaderInput';
 
 function formatValue(val: number, precision: number = 2) {
   return val.toFixed(precision).replace('.', ',');
