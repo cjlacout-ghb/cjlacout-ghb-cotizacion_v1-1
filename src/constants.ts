@@ -16,6 +16,7 @@ export const TICKER_RATIOS: Record<string, number> = {
   "BAK": 2,
   "BRK.B": 22,
   "CEG": 45,
+  "CL": 3,
   "CLS": 20,
   "COIN": 27,
   "COST": 48,
