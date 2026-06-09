@@ -54,7 +54,7 @@ export const TICKER_RATIOS: Record<string, number> = {
   "MRK": 5,
   "MSFT": 30,
   "MSTR": 20,
-  "MU": 15,
+  "MU": 5,
   "NFLX": 48,
   "NKE": 12,
   "NOW": 172,
