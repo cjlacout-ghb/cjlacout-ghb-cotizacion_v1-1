@@ -8,7 +8,7 @@ export const TICKER_RATIOS: Record<string, number> = {
   "AMD": 10,
   "AMGN": 30,
   "AMZN": 144,
-  "ASML": 45,
+  "ASML": 146,
   "AVGO": 39,
   "AXP": 15,
   "AZN": 2,
