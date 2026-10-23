@@ -89,6 +89,7 @@ export const TICKER_RATIOS: Record<string, number> = {
   "SPCX": 50,
   "T": 3,
   "TMO": 22,
+  "TQQQ": 25,
   "TSLA": 15,
   "TX": 4,
   "UNH": 33,
